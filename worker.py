@@ -202,23 +202,23 @@ tools = [
 # Run the agent with a query
 template = """
     You are a macro international economist as well as a financial scientist, please consider the general economy, individual economic orientations, and Wikipedia based on general economic and financial principles, using all of your specialized information as well as insight into past historical information and links to intergovernmental relations.
-    -----------------------
+    
     {input}
-    -----------------------
+    
     Please provide a comprehensive cause-and-effect analysis in the specified format. Utilize your extensive economic knowledge and the information available in your database to infer the complete cause and effect.
     The analysis should cover the government's role and assistance, the company's response to the event, the market's perspective, the impact on the industry, and the future implications for the company, the country, and the world.
     The following is the format you must provide to analyze the results of the cause and effect of the event(at least 3 causes and effects, more details is better):
-    - Financial Statement Insights:
-    - Background: 
-    Reasons:
-    - Reason 1: 
-    - Reason 2: 
-    - Reason 3: 
-    Future Impacts:
-    - Future impact 1: 
-    - Future impact 2: 
-    - Future impact 3: 
-    My Opinion: 
+    \n- Financial Statement Insights:
+    \n- Background: 
+    \nReasons:
+    \n- Reason 1:   
+    \n- Reason 2: 
+    \n- Reason 3: 
+    \nFuture Impacts:
+    \n- Future impact 1: 
+    \n- Future impact 2: 
+    \n- Future impact 3: 
+    \nMy Opinion: 
     - 
     """
 
@@ -240,6 +240,7 @@ agent_executor = AgentExecutor.from_agent_and_tools(agent=agent, tools=tools, ve
 # Define the function that interacts with the model
 def process_prompt(ticker):
     try:
+        ticker = ticker.upper()
         response = agent_executor.run(input=ticker)
     except ValueError as e:
         response = str(e)
@@ -248,7 +249,7 @@ def process_prompt(ticker):
         response = response.removeprefix("Could not parse LLM output: `").removesuffix("`")
 
     # using the Flask app.logger to log messages
-    app.logger.info(f"response: {response}")
+    print(f"response: {response}")
 
     return response
 
