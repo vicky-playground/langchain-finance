@@ -18,9 +18,7 @@ def index():
 @app.route('/process-message', methods=['POST'])
 def process_message_route():
     user_message = request.json['userMessage']  # Extract the user's message from the request
-    print('user_message', user_message)
-
-    bot_response = worker.process_prompt(user_message)  # Process the user's message using the worker module
+    bot_response = worker.process_prompt(user_message)['text']  # Process the user's message using the worker module
 
     # Return the bot's response as JSON
     return jsonify({
