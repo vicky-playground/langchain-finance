@@ -153,7 +153,7 @@ def init_llm():
     global llm, model
     
     params = {
-        GenParams.MAX_NEW_TOKENS: 256, # The maximum number of tokens that the model can generate in a single run.
+        GenParams.MAX_NEW_TOKENS: 1024, # The maximum number of tokens that the model can generate in a single run.
         GenParams.MIN_NEW_TOKENS: 1,   # The minimum number of tokens that the model should generate in a single run.
         GenParams.DECODING_METHOD: DecodingMethods.SAMPLE, # The method used by the model for decoding/generating new tokens. In this case, it uses the sampling method.
         GenParams.TEMPERATURE: 0.6,   # A parameter that controls the randomness of the token generation. A lower value makes the generation more deterministic, while a higher value introduces more randomness.
@@ -204,16 +204,6 @@ template = """
     Please provide a comprehensive cause-and-effect analysis in the specified format. Utilize your extensive economic knowledge and the information available in your database to infer the complete cause and effect.
  
     {input}
-
-    The following is the format you must provide to analyze the results of the cause and effect of the event(at least 3 causes and effects, more details is better):
- 
-    My opinion: 
-    \n Reason 1:   
-    \n Reason 2: 
-    \n Reason 3: 
-    \n Future impact 1: 
-    \n Future impact 2: 
-    \n Future impact 3: 
     """
 
 prompt = PromptTemplate(input_variables=["input"], template=template)
