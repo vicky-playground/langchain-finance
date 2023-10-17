@@ -153,10 +153,10 @@ def init_llm():
     global llm, model
     
     params = {
-        GenParams.MAX_NEW_TOKENS: 1024, # The maximum number of tokens that the model can generate in a single run.
+        GenParams.MAX_NEW_TOKENS: 256, # The maximum number of tokens that the model can generate in a single run.
         GenParams.MIN_NEW_TOKENS: 1,   # The minimum number of tokens that the model should generate in a single run.
         GenParams.DECODING_METHOD: DecodingMethods.SAMPLE, # The method used by the model for decoding/generating new tokens. In this case, it uses the sampling method.
-        GenParams.TEMPERATURE: 0.8,   # A parameter that controls the randomness of the token generation. A lower value makes the generation more deterministic, while a higher value introduces more randomness.
+        GenParams.TEMPERATURE: 0.6,   # A parameter that controls the randomness of the token generation. A lower value makes the generation more deterministic, while a higher value introduces more randomness.
         GenParams.TOP_K: 50,          # The top K parameter restricts the token generation to the K most likely tokens at each step, which can help to focus the generation and avoid irrelevant tokens.
         GenParams.TOP_P: 1            # The top P parameter, also known as nucleus sampling, restricts the token generation to a subset of tokens that have a cumulative probability of at most P, helping to balance between diversity and quality of the generated text.
     }
@@ -180,7 +180,6 @@ init_llm()
 
 
 from langchain.agents import ZeroShotAgent, Tool, AgentExecutor
-#from langchain.agents import initialize_agent
 from langchain.prompts import PromptTemplate
 
 # Make a tool list
@@ -202,24 +201,19 @@ tools = [
 # Run the agent with a query
 template = """
     You are a macro international economist as well as a financial scientist, please consider the general economy, individual economic orientations, and Wikipedia based on general economic and financial principles, using all of your specialized information as well as insight into past historical information and links to intergovernmental relations.
-    
-    {input}
-    
     Please provide a comprehensive cause-and-effect analysis in the specified format. Utilize your extensive economic knowledge and the information available in your database to infer the complete cause and effect.
-    The analysis should cover the government's role and assistance, the company's response to the event, the market's perspective, the impact on the industry, and the future implications for the company, the country, and the world.
+ 
+    {input}
+
     The following is the format you must provide to analyze the results of the cause and effect of the event(at least 3 causes and effects, more details is better):
-    \n- Financial Statement Insights:
-    \n- Background: 
-    \nReasons:
-    \n- Reason 1:   
-    \n- Reason 2: 
-    \n- Reason 3: 
-    \nFuture Impacts:
-    \n- Future impact 1: 
-    \n- Future impact 2: 
-    \n- Future impact 3: 
-    \nMy Opinion: 
-    - 
+ 
+    My opinion: 
+    \n Reason 1:   
+    \n Reason 2: 
+    \n Reason 3: 
+    \n Future impact 1: 
+    \n Future impact 2: 
+    \n Future impact 3: 
     """
 
 prompt = PromptTemplate(input_variables=["input"], template=template)
@@ -251,14 +245,7 @@ def process_prompt(ticker):
     # using the Flask app.logger to log messages
     print(f"response: {response}")
 
-    return response
-
-try:
-    response = agent_executor.run(input="TSLA")
-except ValueError as e:
-    response = str(e)
-    if not response.startswith("Could not parse LLM output: `"):
-        raise e
-    response = response.removeprefix("Could not parse LLM output: `").removesuffix("`")
-print(f"response: {response}")
-
+    return {
+        'input': ticker,
+        'text': response
+    }
