@@ -1,62 +1,62 @@
 /* Light mode */
 body {
-    background-color: #f7f4fd;  /* Lighter shade */
-    color: #333842;  /* Darker shade for better contrast */
-  }
-  
-  /* Dark mode */
-  .dark-mode {
-    background-color: #181a1f;  /* Slight adjustment for softer dark */
-    color: #c9c9c9;
-  }
-  
-  #chat-window {
-    position: relative;
-    height: 70vh;
-    overflow: auto;
-  }
-  
-  .message-line {
-    padding-bottom: 8px;
-    width: 70%;
-    word-break: break-word;
-    display: flex;
-  }
-  
-  .message-box {
-    padding: 12px;
-    border-radius: 15px;
-    display: inline-block;
-    position: relative;
-    background-color: #0f62fe;  /* Slight change for consistency */
-    min-width: 26px;
-    word-wrap: break-word;
-    flex-grow: 0;
-    color:white;
-  }
-  
-  .message-line.my-text {
-    flex-direction: row-reverse;
-    width: 100%;
-  }
-  
-  .message-box.my-text {
-    transform: rotateY(180deg);
-    background-color: #e0f2e1;  /* Slight change for consistency */
-    margin-left:150px;
-  }
-  
-  .me {
-    transform: scale(-1, 1);
-  }
-  
-  .message-box.my-text.dark {
-    background-color: #0e4d9e;
-  }
-  
-  .message-box.dark {
-    background-color: #2f3a48;  /* Slight change for a softer look */
-  }
+  background-color: #d6ddec;
+  color: #121717;
+}
+
+/* Dark mode */
+.dark-mode {
+  background-color: #121717;
+  color: #c9c9c9;
+}
+
+#chat-window {
+  position: relative;
+  height: 500px;
+  overflow: auto;
+}
+
+.message-line {
+  padding-bottom: 8px;
+  width: 70%;
+  word-break: break-word;
+  display: flex;
+}
+
+.message-box {
+  padding: 12px;
+  border-radius: 15px;
+  display: inline-block;
+  position: relative;
+  background-color: #efefef;
+  min-width: 26px;
+  border-top-left-radius: 0;
+  word-wrap: break-word;
+  flex-grow: 0;
+  white-space: pre-wrap;
+}
+
+.message-line.my-text {
+  flex-direction: row-reverse;
+  width: 100%;
+}
+
+.message-box.my-text {
+  transform: rotateY(180deg);
+  background-color: #e7f9d8;
+}
+
+.me {
+  transform: scale(-1, 1);
+}
+
+.message-box.my-text.dark {
+  background-color: #0f4c9e;
+}
+
+.message-box.dark {
+  background-color: #263443;
+}
 
 /* Input container */
 #message-input {
@@ -70,21 +70,10 @@ body {
   border-radius: 40px 0 0 40px;
   background-color: transparent;
   height: auto;
+  color: inherit;
 }
 
 #send-button {
-  border: none;
-  font: inherit;
-  background-color: transparent;
-  margin: 0;
-  appearance: none;
-  padding: 10px 12px;
-  cursor: pointer;
-  font-size: 24px;
-  display: flex;
-}
-
-#reset-button {
   border: none;
   font: inherit;
   background-color: transparent;
@@ -114,20 +103,16 @@ body {
   border: 1px solid #2d2d2d;
 }
 
-#upload-button {
-  color: white;
-  background-color: #007bff;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 12px;
+.microphone i {
+  display: block;
+  width: 25px;
+  color: #125ee5;
 }
 
-#upload-button:hover {
-  background-color: #0056b3;
+.volume i {
+  display: block;
+  width: 25px;
+  color: #125ee5;
 }
 
 .send i {
@@ -135,13 +120,6 @@ body {
   width: 25px;
   color: #125ee5;
 }
-
-.reset i {
-  display: block;
-  width: 25px;
-  color: #125ee5;
-}
-
 
 .loading-animation {
   padding-bottom: 8px;
@@ -175,26 +153,26 @@ body {
 }
 
 .dot {
-    width: 7px;
-    height: 7px;
-    margin: 0 2px;
-    border-radius: 50%;
-    animation: bounce 1.5s ease-in-out infinite;
-    background: #717171;  /* Slight color adjustment */
+  width: 7px;
+  height: 7px;
+  margin: 0 2px;
+  border-radius: 50%;
+  animation: bounce 1.5s ease-in-out infinite;
+  background: #5a5a5a;
 }
 
 .loading-dots.my-loading.dark {
-background-color: #0d4a8c;  /* Slight color adjustment */
+  background-color: #0e4d9e;
 }
 
 .dark {
-background-color: #2e3946;  /* Slight color adjustment */
+  background-color: #263443;
 }
 
 .dark-dot {
-background: #b8b8b8;  /* Slight color adjustment */
+  background: #c9c9c9;
 }
-  
+
 .dot:nth-of-type(1) {
   margin-left: 5px;
   animation-delay: 0s;
@@ -216,4 +194,17 @@ background: #b8b8b8;  /* Slight color adjustment */
   20% {
     transform: translateY(-10px);
   }
+}
+
+.col-12.text-center.d-flex.justify-content-around {
+  padding: 0 300px;
+}
+
+#voice-options {
+  border-radius: 4px; /* Rounded edges */
+}
+
+/* Change color of select on hover */
+#voice-options:hover {
+  background-color: #e9e9e9;
 }
