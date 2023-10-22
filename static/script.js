@@ -80,7 +80,7 @@ const populateBotResponse = async (userMessage) => {
   let uploadButtonHtml = '';
 
   if (isFirstMessage) {
-    response = { botResponse: "Hello there! I'm your friendly finance assistant, ready to answer any questions regarding your ticker. Could you please write a ticker for me to analyze?"};
+    response = { botResponse: "Hello there! I'm your friendly investment advisor, ready to answer any stock ticker you provide. Could you please write a company ticker such as TSLA for Tesla, NVDA for NVIDIA for me to analyze?"};
   } else {
     response = await processUserMessage(userMessage);
   }
