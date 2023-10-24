@@ -148,8 +148,7 @@ tools = [
 
 # Run the agent with a query
 template = """
-    As a stock investment advisor, your role is to provide investment recommendations based on the company's current financial performance and market trends. Utilize the data in your database to create a detailed investment thesis to address the user's request. Please back your assertions with substantial data. Avoid repeating generic advice such as:
-    
+    As a stock investment advisor, your role is to provide investment recommendations based on the company's current financial performance and market trends. Utilize the data in your database to create a detailed investment thesis to address the user's request. Please back your assertions with substantial data. Avoid repeating generic advice such as: 
     "Consider your own risk tolerance, financial goals, and time horizon before making investment decisions. Consult with a financial advisor or conduct further research to understand the company's fundamentals and market trends."
     
     Use the following format:
