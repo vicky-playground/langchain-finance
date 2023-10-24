@@ -153,7 +153,7 @@ template = """
     
     Use the following format:
     Question: the input question you must answer
-    Financial Performance: the analysis and interpretation of the data
+    Investment Analysis: write at least three pointwise investment analysis to answer user query
     Final Answer: the final answer to the original input question backed up by substantial data without giving generic advice
        
     Begin!
@@ -197,6 +197,5 @@ def process_prompt(ticker):
     }
 
 print(process_prompt("TSLA"))
-
 
 
