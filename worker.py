@@ -157,7 +157,8 @@ template = """
     Question: the input question you must answer
     Investment Analysis: write at least three pointwise investment analysis to answer user query
     Final Answer: the final answer to the original input question backed up by substantial data without giving generic advice such as "it is important to conduct further research and consult with a financial advisor before making a decision"
-       
+    Note: Anything relevant to the ticker 
+    
     Begin!
     
     Question: {input}
