@@ -2,8 +2,12 @@ $(document).ready(function() {
     // Function to send the selected stock ticker to the server
     function sendMessage() {
         var selectedTicker = $("#stockTickerSelect").val();
+
+        // Show the user's message in the chat window
+        appendUserMessage(selectedTicker);
+
         // Show a loading message while waiting for the response
-        updateBotMessage("Processing...");
+        appendBotMessage("Processing...");
 
         $.ajax({
             url: '/process-message',
@@ -12,25 +16,29 @@ $(document).ready(function() {
             data: JSON.stringify({ userMessage: selectedTicker }),
             success: function(response) {
                 var botResponse = response.botResponse;
-                updateBotMessage(botResponse);
+                // Replace the last bot message with the bot's response
+                $("#chatMessages .bot-message").last().text(botResponse);
             },
             error: function(error) {
                 console.error(error);
-                updateBotMessage("Error processing request.");
+                appendBotMessage("Error processing request.");
             }
         });
     }
 
-    // Function to update the bot message in the chat area
-    function updateBotMessage(message, reset = false) {
+    // Function to append a bot message to the chat area
+    function appendBotMessage(message) {
         var chatMessages = $("#chatMessages");
-        var botMessage = $("<div>").addClass("bot-message");
-        if (reset) {
-            botMessage.addClass("initial-message"); // Apply initial message styling
-        }
-        botMessage.text(message);
-        chatMessages.empty(); // Clear existing messages
+        var botMessage = $("<div>").addClass("bot-message").text(message);
         chatMessages.append(botMessage);
+        chatMessages.scrollTop(chatMessages[0].scrollHeight);
+    }
+
+    // Function to append a user message to the chat area
+    function appendUserMessage(message) {
+        var chatMessages = $("#chatMessages");
+        var userMessage = $("<div>").addClass("user-message").text(message);
+        chatMessages.append(userMessage);
         chatMessages.scrollTop(chatMessages[0].scrollHeight);
     }
 
@@ -39,7 +47,7 @@ $(document).ready(function() {
 
     // Bind the reset button click event to reset the conversation
     $("#resetButton").click(function() {
-        updateBotMessage("Conversation has been reset. Please select a stock ticker to continue.", true);
+        $("#chatMessages").empty(); // Clear all messages
+        appendBotMessage("Conversation has been reset. Please select a stock ticker to continue.");
     });
-    
 });
