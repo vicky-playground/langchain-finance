@@ -148,6 +148,7 @@ tools = [
 
 # Run the agent with a query
 template = """
+    <s>[INST] <<SYS>>
     As a stock investment advisor, your role is to provide investment recommendations based on the company's current financial performance and market trends. 
     Utilize the data in your database to create a detailed investment thesis to address the user's request. 
     Please back your assertions with substantial data. 
@@ -162,8 +163,11 @@ template = """
     
     Begin!
     
+    
     Question: {input}
     {agent_scratchpad}
+    <</SYS>>
+     [/INST]
     """
 
 
