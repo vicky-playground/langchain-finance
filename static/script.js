@@ -27,9 +27,12 @@ $(document).ready(function() {
     }
 
     // Function to append a bot message to the chat area
-    function appendBotMessage(message) {
+    function appendBotMessage(message, isInitial = false) {
         var chatMessages = $("#chatMessages");
         var botMessage = $("<div>").addClass("bot-message").text(message);
+        if (isInitial) {
+            botMessage.addClass("initial-message");
+        }
         chatMessages.append(botMessage);
         chatMessages.scrollTop(chatMessages[0].scrollHeight);
     }
@@ -48,6 +51,6 @@ $(document).ready(function() {
     // Bind the reset button click event to reset the conversation
     $("#resetButton").click(function() {
         $("#chatMessages").empty(); // Clear all messages
-        appendBotMessage("Conversation has been reset. Please select a stock ticker to continue.");
+        appendBotMessage("Please select a stock ticker to get started.", true);
     });
 });
