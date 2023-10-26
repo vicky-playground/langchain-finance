@@ -1,4 +1,3 @@
-// app.js
 $(document).ready(function() {
     // Function to send the selected stock ticker to the server
     function sendMessage() {
