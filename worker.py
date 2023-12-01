@@ -14,8 +14,8 @@ from langchain import LLMChain
 DEVICE = "cuda:0" if torch.cuda.is_available() else "cpu"
 
 # Replace 'Watsonx_API' and 'Project_id' with your actual API key and Project ID
-Watsonx_API = "uvnQIfnjPk2Jpszy0hAvr80xCUAudclZsltCi3gYxAVu"
-Project_id= "177ab670-c7d0-4f34-894f-228297d644d9"
+Watsonx_API = "Watsonx_API"
+Project_id= "Project_id"
 
 
 # Function to initialize the language model 
